@@ -66,9 +66,8 @@ def check_Win(bo, le):
             (bo[2] == le and bo[4] == le and bo[6] == le))
 
 
-def is_full():
-    global m_count
-    if m_count == 8:
+def is_full(m):
+    if m < 9:
         return True
     else:
         print("Brak miejsca na tablicy.\nREMIS! ")
@@ -76,7 +75,8 @@ def is_full():
 
 
 def Game_1vs1():
-    while is_full:
+    global m_count
+    while is_full(m_count):
         check_Win_X = check_Win(board, 'X')
         check_Win_O = check_Win(board, 'O')
         if check_Win_X or check_Win_O:
@@ -90,6 +90,7 @@ def Game_1vs1():
             print('Czy chcesz zagrać ponownie?')
             x = int(input('1.Tak\n2.Nie'))
             if x == 1:
+                m_count = 0
                 Clear_board()
                 main()
             else:
@@ -122,8 +123,8 @@ def Game_vsComp():
     global player_flag
     global m_count
 
-    while is_full:
-        print(m_count)
+    while is_full(m_count):
+        print('m_count = ', m_count)
         check_Win_X = check_Win(board, 'X')
         check_Win_O = check_Win(board, 'O')
         if check_Win_X or check_Win_O:
@@ -137,6 +138,7 @@ def Game_vsComp():
             print('Czy chcesz zagrać ponownie?')
             x = int(input('1.Tak\n2.Nie'))
             if x == 1:
+                m_count = 0
                 Clear_board()
                 main()
             else:
